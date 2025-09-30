@@ -91,18 +91,28 @@ export default function ProjectsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            Featured Projects
-          </h1>
-          <p className="text-xl text-[var(--muted)] max-w-2xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl font-bold mb-4"
+          >
+            Featured <span className="gradient-text">Projects</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-[var(--muted)] max-w-2xl mx-auto"
+          >
             Transforming ideas into impactful digital solutions. Here are some of
             my recent projects that deliver real business value.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Projects Grid */}
@@ -110,37 +120,48 @@ export default function ProjectsPage() {
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1,
+                ease: [0.22, 1, 0.36, 1]
+              }}
             >
-              <Card className="h-full flex flex-col">
-                <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                <p className="text-[var(--muted)] mb-4">
+              <Card className="h-full flex flex-col group">
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-2xl font-bold group-hover:gradient-text transition-all duration-300">
+                    {project.title}
+                  </h3>
+                  {/* Decorative gradient dot */}
+                  <div className="w-3 h-3 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500"></div>
+                </div>
+                
+                <p className="text-[var(--muted)] mb-4 leading-relaxed">
                   {project.description}
                 </p>
 
                 {/* Problem → Solution → Impact */}
-                <div className="space-y-3 mb-4">
-                  <div>
+                <div className="space-y-3 mb-6">
+                  <div className="pl-3 border-l-2 border-red-500/30">
                     <span className="font-semibold text-sm text-red-600 dark:text-red-400">
-                      Problem:
+                      Problem
                     </span>
                     <p className="text-sm text-[var(--muted)] mt-1">
                       {project.problem}
                     </p>
                   </div>
-                  <div>
-                    <span className="font-semibold text-sm text-blue-600 dark:text-blue-400">
-                      Solution:
+                  <div className="pl-3 border-l-2 border-cyan-500/30">
+                    <span className="font-semibold text-sm text-cyan-600 dark:text-cyan-400">
+                      Solution
                     </span>
                     <p className="text-sm text-[var(--muted)] mt-1">
                       {project.solution}
                     </p>
                   </div>
-                  <div>
+                  <div className="pl-3 border-l-2 border-green-500/30">
                     <span className="font-semibold text-sm text-green-600 dark:text-green-400">
-                      Impact:
+                      Impact
                     </span>
                     <p className="text-sm text-[var(--muted)] mt-1">
                       {project.impact}
@@ -149,7 +170,7 @@ export default function ProjectsPage() {
                 </div>
 
                 {/* Tech Stack */}
-                <div className="mb-4">
+                <div className="mb-6">
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map((tech) => (
                       <Badge key={tech} variant="primary">
@@ -172,6 +193,7 @@ export default function ProjectsPage() {
                         className="w-5 h-5 mr-2"
                         fill="currentColor"
                         viewBox="0 0 24 24"
+                        aria-hidden="true"
                       >
                         <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                       </svg>

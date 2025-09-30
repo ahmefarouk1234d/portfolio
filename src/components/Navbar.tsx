@@ -20,11 +20,11 @@ export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-[var(--background)]/80 backdrop-blur-md border-b border-[var(--border)]">
+    <nav className="sticky top-0 z-50 glass border-b border-[var(--border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="font-bold text-xl hover:text-blue-600 transition-colors">
+          <Link href="/" className="font-bold text-xl gradient-text hover:opacity-80 transition-opacity">
             Ahmed Farouk
           </Link>
 
@@ -38,7 +38,7 @@ export function Navbar() {
                   href={link.href}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive
-                      ? "bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-100"
+                      ? "bg-gradient-to-r from-cyan-500/10 to-violet-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20"
                       : "hover:bg-gray-100 dark:hover:bg-gray-800"
                   }`}
                 >
