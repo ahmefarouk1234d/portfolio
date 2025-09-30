@@ -77,39 +77,52 @@ export default function ExperiencePage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            Work Experience
-          </h1>
-          <p className="text-xl text-[var(--muted)] max-w-2xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl font-bold mb-4"
+          >
+            Work <span className="gradient-text">Experience</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-[var(--muted)] max-w-2xl mx-auto"
+          >
             Over 5 years of professional experience building web applications and
             leading development teams.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Timeline */}
         <div className="relative">
-          {/* Vertical Line */}
-          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-[var(--border)]"></div>
+          {/* Vertical Line with gradient */}
+          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-cyan-500 via-violet-500 to-pink-500 opacity-30"></div>
 
           {/* Experience Items */}
           <div className="space-y-12">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.id}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
                 className={`relative ${
                   index % 2 === 0 ? "md:pr-1/2" : "md:pl-1/2 md:ml-auto"
                 } md:w-1/2`}
               >
-                {/* Timeline Dot */}
-                <div
+                {/* Timeline Dot with gradient */}
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ duration: 0.3, delay: index * 0.15 + 0.3 }}
                   className={`absolute top-0 ${
                     index % 2 === 0
                       ? "md:right-0 left-0"
@@ -118,37 +131,62 @@ export default function ExperiencePage() {
                     index % 2 === 0
                       ? "md:translate-x-1/2"
                       : "md:-translate-x-1/2"
-                  } w-4 h-4 bg-blue-600 rounded-full border-4 border-[var(--background)] z-10`}
-                ></div>
+                  } z-10`}
+                >
+                  <div className="w-4 h-4 bg-gradient-to-r from-cyan-500 to-violet-500 rounded-full border-4 border-[var(--background)]">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500 blur-md opacity-50"></div>
+                  </div>
+                </motion.div>
 
                 {/* Content */}
                 <div className="ml-8 md:ml-0">
                   <Card>
                     <div className="mb-3">
-                      <Badge variant="primary">{exp.period}</Badge>
+                      <Badge variant="gradient">{exp.period}</Badge>
                     </div>
-                    <h3 className="text-xl font-bold mb-1">{exp.title}</h3>
+                    <h3 className="text-xl font-bold mb-1 group-hover:gradient-text transition-all">
+                      {exp.title}
+                    </h3>
                     <p className="text-lg text-[var(--muted)] mb-3">
                       {exp.company} • {exp.location}
                     </p>
-                    <p className="text-[var(--muted)] mb-4">{exp.description}</p>
+                    <p className="text-[var(--muted)] mb-4 leading-relaxed">{exp.description}</p>
 
                     {/* Achievements */}
                     <div className="mb-4">
-                      <h4 className="font-semibold mb-2">Key Achievements:</h4>
-                      <ul className="list-disc list-inside space-y-1 text-sm text-[var(--muted)]">
+                      <h4 className="font-semibold mb-2 flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500"></span>
+                        Key Achievements
+                      </h4>
+                      <ul className="space-y-2 text-sm text-[var(--muted)]">
                         {exp.achievements.map((achievement, i) => (
-                          <li key={i}>{achievement}</li>
+                          <motion.li
+                            key={i}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.3, delay: index * 0.15 + 0.4 + i * 0.05 }}
+                            className="flex items-start gap-2"
+                          >
+                            <span className="text-cyan-500 mt-1">✓</span>
+                            <span>{achievement}</span>
+                          </motion.li>
                         ))}
                       </ul>
                     </div>
 
                     {/* Tech Stack */}
                     <div className="flex flex-wrap gap-2">
-                      {exp.tech.map((tech) => (
-                        <Badge key={tech} variant="default">
-                          {tech}
-                        </Badge>
+                      {exp.tech.map((tech, idx) => (
+                        <motion.div
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.2, delay: index * 0.15 + 0.6 + idx * 0.03 }}
+                        >
+                          <Badge variant="primary">
+                            {tech}
+                          </Badge>
+                        </motion.div>
                       ))}
                     </div>
                   </Card>

@@ -95,18 +95,28 @@ export default function SkillsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            Skills & Expertise
-          </h1>
-          <p className="text-xl text-[var(--muted)] max-w-2xl mx-auto">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl font-bold mb-4"
+          >
+            Skills & <span className="gradient-text">Expertise</span>
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-xl text-[var(--muted)] max-w-2xl mx-auto"
+          >
             A comprehensive toolkit for building modern, scalable, and performant
             web applications from frontend to backend.
-          </p>
+          </motion.p>
         </motion.div>
 
         {/* Skills Grid */}
@@ -114,17 +124,27 @@ export default function SkillsPage() {
           {skillCategories.map((category, index) => (
             <motion.div
               key={category.title}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Card hover={false}>
-                <h3 className="text-xl font-bold mb-4">{category.title}</h3>
+              <Card hover={false} className="h-full">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500"></div>
+                  <h3 className="text-xl font-bold">{category.title}</h3>
+                </div>
                 <div className="flex flex-wrap gap-2">
-                  {category.skills.map((skill) => (
-                    <Badge key={skill} variant="default">
-                      {skill}
-                    </Badge>
+                  {category.skills.map((skill, idx) => (
+                    <motion.div
+                      key={skill}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: index * 0.1 + idx * 0.02 }}
+                    >
+                      <Badge variant="primary">
+                        {skill}
+                      </Badge>
+                    </motion.div>
                   ))}
                 </div>
               </Card>
@@ -134,16 +154,20 @@ export default function SkillsPage() {
 
         {/* Proficiency Section */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           viewport={{ once: true }}
           className="mt-16"
         >
           <Card hover={false}>
-            <h3 className="text-2xl font-bold mb-6 text-center">
-              Core Competencies
-            </h3>
+            <div className="flex items-center justify-center gap-3 mb-8">
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-cyan-500 to-violet-500"></div>
+              <h3 className="text-2xl font-bold text-center">
+                Core Competencies
+              </h3>
+              <div className="w-2 h-2 rounded-full bg-gradient-to-r from-violet-500 to-cyan-500"></div>
+            </div>
             <div className="space-y-6">
               {[
                 {
@@ -186,7 +210,7 @@ export default function SkillsPage() {
                         {skill.description}
                       </span>
                     </div>
-                    <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+                    <span className="text-sm font-medium gradient-text">
                       {skill.level}%
                     </span>
                   </div>
@@ -194,10 +218,22 @@ export default function SkillsPage() {
                     <motion.div
                       initial={{ width: 0 }}
                       whileInView={{ width: `${skill.level}%` }}
-                      transition={{ duration: 1, delay: index * 0.1 }}
+                      transition={{ duration: 1, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                       viewport={{ once: true }}
-                      className="h-full bg-gradient-to-r from-blue-500 to-blue-600"
-                    />
+                      className="h-full bg-gradient-to-r from-cyan-500 to-violet-500 relative overflow-hidden"
+                    >
+                      {/* Shine effect */}
+                      <motion.div
+                        initial={{ x: '-100%' }}
+                        animate={{ x: '200%' }}
+                        transition={{
+                          duration: 2,
+                          delay: index * 0.1 + 1,
+                          ease: 'easeInOut',
+                        }}
+                        className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-12"
+                      />
+                    </motion.div>
                   </div>
                 </motion.div>
               ))}
