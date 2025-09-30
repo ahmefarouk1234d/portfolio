@@ -30,12 +30,21 @@ export const metadata: Metadata = {
     description:
       "Full-stack developer specializing in TypeScript, Next.js, and Firebase.",
     siteName: "Ahmed Farouk Portfolio",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Ahmed Farouk - Full-Stack Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ahmed Farouk - Full-Stack Developer",
     description:
       "Full-stack developer specializing in TypeScript, Next.js, and Firebase.",
+    images: ["/api/og"],
   },
   robots: {
     index: true,
