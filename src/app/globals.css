@@ -1,6 +1,33 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-card: #f9fafb;
+  --color-card-hover: #f3f4f6;
+  --color-border: #e5e7eb;
+  --color-muted: #6b7280;
+  --color-accent: #3b82f6;
+  --color-accent-hover: #2563eb;
+  
+  /* Spacing - 8pt grid */
+  --spacing-1: 0.5rem; /* 8px */
+  --spacing-2: 1rem; /* 16px */
+  --spacing-3: 1.5rem; /* 24px */
+  --spacing-4: 2rem; /* 32px */
+  --spacing-5: 2.5rem; /* 40px */
+  --spacing-6: 3rem; /* 48px */
+  --spacing-8: 4rem; /* 64px */
+  --spacing-10: 5rem; /* 80px */
+  --spacing-12: 6rem; /* 96px */
+  --spacing-16: 8rem; /* 128px */
+  
+  /* Border Radius */
+  --radius-lg: 1rem; /* 16px */
+  --radius-xl: 1.25rem; /* 20px */
+  --radius-2xl: 1.5rem; /* 24px */
+}
 
 :root {
   --background: #ffffff;
